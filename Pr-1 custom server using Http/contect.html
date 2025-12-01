@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | My Website</title>
+
+    <!-- INTERNAL CSS -->
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* Header Design */
+        header {
+            background-color: #ffffff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Nav Links */
+        nav a {
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            color: #645881;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #007bff;
+        }
+
+        /* Active Page */
+        .active {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            width: 90%;
+            max-width: 850px;
+            background: #38082a;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #fffafa;
+        }
+
+        .contact-section p {
+            text-align: center;
+            font-size: 17px;
+            color: #fffbfb;
+            margin-bottom: 30px;
+        }
+
+        /* Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+        }
+
+        .contact-form button {
+            padding:10px;
+            background: #ffe600;
+            color: rgb(255, 255, 255);
+            border: none;
+            font-size: 17px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .contact-form button:hover {
+            background: #a57dad;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">My Website</div>
+
+        <nav>
+            <a href="/home.html">Home</a>
+            <a href="/about.html">About</a>
+            <a href="/contect.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <!-- CONTACT PAGE -->
+    <section class="contact-section">
+        <h2>Contact Me</h2>
+        <p>If you have any questions or want to work together, feel free to reach out.</p>
+
+        <form class="contact-form">
+            <input type="text" placeholder="Your Full Name" required>
+            <input type="email" placeholder="Your Email Address" required>
+            <input type="text" placeholder="Subject" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+</body>
+
+</html>
