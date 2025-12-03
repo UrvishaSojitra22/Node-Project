@@ -9,13 +9,13 @@ const server = http.createServer(
             case "/":
                 filepath = "./home.html";
                 break;
-            case "/home.html":
+            case "/home":
                 filepath = "./home.html";
                 break;
-            case "/about.html":
+            case "/about":
                 filepath = "./about.html";
                 break;
-            case "/contect.html":
+            case "/contect":
                 filepath = "./contect.html";
                 break;
             default:
