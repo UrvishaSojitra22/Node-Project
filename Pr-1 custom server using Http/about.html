@@ -4,32 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | My Portfolio</title>
+    <title>About | Endoc Pharma</title>
 
     <!-- INTERNAL CSS -->
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            background: #0f0f1a; /* Pharma theme */
         }
 
         /* Header Design */
         header {
-            background-color: #ffffff;
+            background-color: #191933;
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #2f2f4a;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
         }
 
         /* Logo */
         .logo {
             font-size: 22px;
             font-weight: bold;
-            color: #333;
+            color: #c8a7ff;
         }
 
         /* Nav Links */
@@ -37,45 +37,67 @@
             text-decoration: none;
             margin: 0 15px;
             font-size: 16px;
-            color: #333;
+            color: #e6e6ff;
             font-weight: 500;
             transition: 0.3s;
         }
 
         nav a:hover {
-            color: #007bff;
+            color: #9d72ff;
         }
 
         /* Active Page */
         .active {
-            color: #007bff;
+            color: #c8a7ff;
             font-weight: bold;
         }
 
         /* About Section */
         .about {
-            padding: 60px 40px;
-            background: #2c012af3;
-            margin: 40px auto;
+            padding: 70px 40px;
+            background: linear-gradient(135deg, #381e72, #192069, #0d0d1a);
+            margin: 50px auto;
             max-width: 900px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.45);
+            text-align: center;
+            color: white;
         }
 
         .about h2 {
-            text-align: center;
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 20px;
-            color: #f1eeee;
+            color: #e9dbff;
+            letter-spacing: 1px;
         }
 
         .about p {
             font-size: 18px;
-            color: #fefeff;
-            line-height: 1.6;
-            text-align: center;
-            max-width: 750px;
+            color: #dcdcff;
+            line-height: 1.7;
+            max-width: 780px;
             margin: auto;
+        }
+
+        /* Sub-Sections for Mission / Vision */
+        .sub-box {
+            margin-top: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .sub-box h3 {
+            font-size: 24px;
+            color: #c8a7ff;
+            margin-bottom: 12px;
+        }
+
+        .sub-box p {
+            font-size: 16px;
+            color: #dcdcff;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -83,22 +105,50 @@
 <body>
 
     <header>
-        <div class="logo">My Website</div>
+        <div class="logo">Endoc Pharma</div>
 
         <nav>
             <a href="/home">Home</a>
-            <a href="/about." class="active">About</a>
+            <a href="/about" class="active">About</a>
             <a href="/contect">Contact</a>
         </nav>
     </header>
 
     <!-- ABOUT SECTION -->
     <section class="about">
-        <h2>About Me</h2>
+        <h2>About Endoc Pharma</h2>
         <p>
-            I’m a passionate web developer skilled in creating beautiful, responsive and modern websites.
-            I enjoy building creative UI and clean user experiences using HTML, CSS, JavaScript, React.js & Node.js.
+            Endoc Pharma is a research-driven pharmaceutical company committed to delivering
+            high-quality, safe, and innovative healthcare solutions. We focus on developing
+            world-class formulations, maintaining global manufacturing standards, and improving
+            human health through science, technology, and innovation.
         </p>
+
+        <!-- Mission -->
+        <div class="sub-box">
+            <h3>Our Mission</h3>
+            <p>
+                To advance global healthcare by providing reliable, effective, and affordable
+                pharmaceutical products that meet international quality standards.
+            </p>
+        </div>
+
+        <!-- Vision -->
+        <div class="sub-box">
+            <h3>Our Vision</h3>
+            <p>
+                To become a globally trusted pharmaceutical company recognized for innovation,
+                scientific excellence, and a commitment to improving quality of life.
+            </p>
+        </div>
+
+        <!-- Values -->
+        <div class="sub-box">
+            <h3>Our Core Values</h3>
+            <p>
+                Quality • Integrity • Innovation • Patient Safety • Global Standards
+            </p>
+        </div>
     </section>
 
 </body>
