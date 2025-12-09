@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list in crud</title>
+
+    <!-- INTERNAL PROFESSIONAL UI CSS -->
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 10px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #092ea700, #096b6b);
+            color: #021b36;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            letter-spacing: 0.5px;
+            color: #000308;
+        }
+
+        table {
+            border-collapse: collapse;
+            min-width: 380px;
+            background: #05233f;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(24, 42, 85, 0.12);
+        }
+
+        td {
+            padding: 10px 14px;
+            font-size: 14px;
+            border-bottom: 1px solid #0b1529;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td:first-child {
+            background: #15505f;
+            font-weight: 600;
+            width: 140px;
+            color: #c4c5c7b0;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid #2061b1;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        input[type="submit"] {
+            padding: 8px 18px;
+            border-radius: 999px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #010014, #6366f1);
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            box-shadow: 0 8px 18px rgba(6, 4, 51, 0.35);
+            transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.15s ease;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(79, 70, 229, 0.45);
+        }
+
+        input[type="submit"]:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 12px rgba(79, 70, 229, 0.35);
+            opacity: 0.9;
+        }
+
+        @media (max-width: 480px) {
+            table {
+                width: 100%;
+                min-width: 0;
+            }
+
+            td {
+                font-size: 13px;
+            }
+
+            td:first-child {
+                width: 110px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1> Edit Student </h1>
+        <form action="/update-student?taskID=<%= tasks.id %>" method="post">
+            <table border="1" cellpadding="5px" cellspacing="0px">
+                <tr>
+                    <td>Id</td>
+                    <td><input type="text" name="id" value="<%= tasks.id %>"></td>
+                </tr>
+                <tr>
+                    <td>Task Title</td>
+                    <td><input type="text" name="title" value="<%= tasks.title%>"></td>
+                </tr>
+
+                <tr>
+                    <td>Description</td>
+                    <td><input type="text" name="description" value="<%= tasks.description%>"></td>
+                </tr>
+
+                <tr>
+                    <td>Date</td>
+                    <td><input type="text" name="date" value="<%= tasks.date %>"></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>
+                        <select name="status" value="<%= tasks.status %>">
+                            <option value="select-Status ">--select-Status--</option>
+                            <option value="Pending" <%=tasks.status=='Pending' ? "selected" : "" %>>Pending</option>
+                            <option value="In Progress" <%=tasks.status=='In Progress' ? "selected" : "" %>>In Progress
+                            </option>
+                            <option value="Completed" <%=tasks.status=='Completed' ? "selected" : "" %>>Completed
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Priority</td>
+                    <td>
+                        <select name="priority" value="<%= tasks.priority %>">
+                            <option value="select-Priority">--select Priority--</option>
+                            <option value="Low" <%=tasks.priority=='Low' ? "selected" : "" %>>Low</option>
+                            <option value="Medium" <%=tasks.priority=='Medium' ? "selected" : "" %>>Medium</option>
+                            <option value="High" <%=tasks.priority=='High' ? "selected" : "" %>>High</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="text-align:center;">
+                        <input type="submit" name="submit" value="Add">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+
+</html>
