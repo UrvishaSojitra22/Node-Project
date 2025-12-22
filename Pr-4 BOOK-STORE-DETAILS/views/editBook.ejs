@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+</head>
+
+<body>
+    <center>
+        <h1>Edit student Details</h1>
+        <form action="/update-book/<%= book._id %>" method="post">
+            <input type="text" name="title" value="<%= book.title %>"><br>
+            <input type="text" name="author" value="<%= book.author %>"><br>
+
+            <select name="category">
+                <option value="Fiction">Fiction</option>
+                <option value="Education">Education</option>
+            </select>
+
+            <input type="number" name="price" value="<%= book.price %>"><br>
+
+            <select name="status">
+                <option value="Available">Available</option>
+                <option value="Out of Stock">Out of Stock</option>
+            </select>
+
+            <button>Update Book</button>
+        </form>
+
+    </center>
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOK STORE DETAILS</title>
+
+    <style>
+        body {
+            margin: 100;
+            padding: 10;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+        .container {
+            width: 50%;
+            margin: 40px auto;
+            background: linear-gradient(135deg, #234d5f, #203a43, #2c5364);     
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #e6e6ec;
+            margin-bottom: 30px;
+        }
+
+        h2,
+        h3 {
+            color: #bcb4d1;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #976b6b;
+        }
+
+        th {
+            background-color: #1b1f5e;
+            color: rgb(133, 100, 100);
+            padding: 10px;
+        }
+
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        input,
+        select {
+            width: 95%;
+            padding: 6px;
+            border-radius: 5px;
+            border: 1px solid #522121;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #2d1b5e;
+        }
+
+        button,
+        input[type="submit"] {
+            background: linear-gradient(to right, #1b1f5e, #4b2b7f);
+            color: rgb(106, 98, 214);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover,
+        input[type="submit"]:hover {
+            background: linear-gradient(to right, #4b2b7f, #1b1f5e);
+        }
+
+        a {
+            text-decoration: none;
+            color: #1b1f5e;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #4b2b7f;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .no-data {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📚 Book Management System</h1>
+
+        <!-- ADD BOOK -->
+        <div class="section">
+            <h2>Add New Book</h2>
+
+            <form action="/add-book" method="post">
+                <table>
+
+                    <tr>
+                        <td>Book Title</td>
+                        <td><input type="text" name="title" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Author</td>
+                        <td><input type="text" name="author" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Category</td>
+                        <td>
+                            <select name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Fiction">Fiction</option>
+                                <option value="Non-Fiction">Non-Fiction</option>
+                                <option value="Education">Education</option>
+                                <option value="Biography">Biography</option>
+                                <option value="Comics">Comics</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Price</td>
+                        <td><input type="number" name="price" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Quantity</td>
+                        <td><input type="number" name="quantity" required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Publisher</td>
+                        <td><input type="text" name="publisher"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Publish Year</td>
+                        <td><input type="number" name="publishYear"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Language</td>
+                        <td>
+                            <select name="language">
+                                <option value="">Select Language</option>
+                                <option value="English">English</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Gujarati">Gujarati</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>ISBN</td>
+                        <td><input type="text" name="isbn"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            <select name="status">
+                                <option value="Available">Available</option>
+                                <option value="Out of Stock">Out of Stock</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Add Book">
+                        </td>
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+
+        <!-- LIST -->
+        <div class="section">
+            <h2>View All Book Details</h2>
+
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+                <% if (books.length === 0) { %>
+                    <tr>
+                        <td colspan="7" class="no-data">No Books Found</td>
+                    </tr>
+                <% } else { %>
+                    <% books.forEach((b, i) => { %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td><%= b.title %></td>
+                            <td><%= b.author %></td>
+                            <td><%= b.category %></td>
+                            <td><%= b.price %></td>
+                            <td><%= b.status %></td>
+                            <td>
+                                <a href="/edit-book/<%= b._id %>">Edit</a> |
+                                <a href="/delete-book/<%= b._id %>">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
