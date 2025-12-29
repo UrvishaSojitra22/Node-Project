@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #0a1f44, #102c5c);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 420px;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0a1f44;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 8px 5px;
+            font-size: 15px;
+            color: #0a1f44;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 9px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color: #0a1f44;
+            color: #ffffff;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <h1>Edit Movie Details</h1>
+
+        <!-- 🔑 movie (lowercase) use karo -->
+        <form action="/update-Movie/<%= movie._id %>" method="post" enctype="multipart/form-data">
+
+            <table>
+                <tr>
+                    <td>Movie Title</td>
+                    <td>
+                        <input type="text" name="title" value="<%= movie.title %>" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Director</td>
+                    <td>
+                        <input type="text" name="director" value="<%= movie.director %>" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Genre</td>
+                    <td>
+                        <select name="genre">
+                            <option value="Action" <%=movie.genre==='Action' ? 'selected' : '' %>>Action</option>
+                            <option value="Drama" <%=movie.genre==='Drama' ? 'selected' : '' %>>Drama</option>
+                            <option value="Comedy" <%=movie.genre==='Comedy' ? 'selected' : '' %>>Comedy</option>
+                            <option value="Romance" <%=movie.genre==='Romance' ? 'selected' : '' %>>Romance</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Release Year</td>
+                    <td>
+                        <input type="number" name="releaseYear" value="<%= movie.releaseYear %>">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Movie Poster</td>
+                    <td>
+                        <!-- ❗ required hatai didhu -->
+                        <input type="file" name="poster" accept="image/*">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Status</td>
+                    <td>
+                        <select name="status">
+                            <option value="Available" <%=movie.status==='Available' ? 'selected' : '' %>>
+                                Available
+                            </option>
+                            <option value="Not Available" <%=movie.status==='Not Available' ? 'selected' : '' %>>
+                                Not Available
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <button type="submit">Update Movie</button>
+
+        </form>
+    </div>
+   
+</body>
+
+</html>
