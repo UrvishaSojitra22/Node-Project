@@ -1,0 +1,111 @@
+<%- include('../header')%>
+
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Blog Details</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" method="post" action="/admin/update-admin/<%= admin._id %>"
+                            enctype="multipart/form-data">
+
+                            <div class="card-body">
+                                <h4 class="card-title">Update Admin</h4>
+
+                                <!-- Name -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Admin Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="name" value="<%= admin.name %>"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" name="email" value="<%= admin.email %>"
+                                            required>
+                                    </div>
+                                </div>
+
+
+
+                                <!-- Mobile -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Mobile</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="mobile"
+                                            value="<%= admin.mobile %>">
+                                    </div>
+                                </div>
+
+                               
+
+                                
+                                <!-- Address -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Address</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" name="address"
+                                            rows="3"><%= admin.address %></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Image -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Admin Image</label>
+                                    <div class="col-sm-9">
+                                        <% if(admin.adminImage){ %>
+                                            <img src="<%= admin.adminImage %>"
+                                                style="width:100px;height:100px;object-fit:cover;border-radius:8px;margin-bottom:10px;">
+                                            <% } %>
+                                                <input type="file" class="form-control" name="adminImage">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-top">
+                                <div class="card-body text-right">
+                                    <button type="submit" class="btn btn-success">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+
+
+
+                    <%- include('../footer')%>

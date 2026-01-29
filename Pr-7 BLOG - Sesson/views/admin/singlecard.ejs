@@ -1,0 +1,96 @@
+<%- include('../header') %>
+
+<style>
+    body {
+        background-color: #8894ad;
+    }
+
+    .single-admin {
+        max-width: 900px;
+        margin: 40px auto;
+        background: #21158b;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        color: #f1f5f9;
+    }
+
+    /* Image small & center */
+    .single-admin img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto 20px;
+        border-radius: 14px;
+        background: #21355f;
+    }
+
+    .single-admin h2 {
+        font-weight: 800;
+        font-size: 26px;
+        margin-bottom: 15px;
+        text-align: center;
+        color: #e0e7ff;
+    }
+
+    /* Meta info line by line */
+    .meta {
+        font-size: 15px;
+        line-height: 1.9;
+        background: rgba(255,255,255,0.08);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+    }
+
+    .meta div {
+        margin-bottom: 6px;
+    }
+
+    .meta span {
+        font-weight: 600;
+        color: #c7d2fe;
+    }
+
+    .back-btn {
+        display: inline-block;
+        padding: 10px 22px;
+        background: #2563eb;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .back-btn:hover {
+        background: #1e40af;
+    }
+</style>
+
+<div class="single-admin">
+
+    <% if(admins.adminImage){ %>
+        <img src="<%= admins.adminImage %>" alt="Admin Image">
+    <% } %>
+
+    <h2><%= admins.name %></h2>
+
+    <!-- Admin Details -->
+    <div class="meta">
+        <div><span>Email:</span> <%= admins.email %></div>
+        <div><span>Mobile:</span> <%= admins.mobile || '-' %></div>
+        <div><span>Role:</span> <%= admins.role %></div>
+        <div><span>Status:</span> <%= admins.status %></div>
+        <div><span>Address:</span> <%= admins.address || '-' %></div>
+        <div><span>Created At:</span>
+            <%= new Date(admins.createdAt).toDateString() %>
+        </div>
+    </div>
+
+    <a href="/admin/view-admin" class="back-btn">← Back to admins</a>
+
+</div>
+
+<%- include('../footer') %>

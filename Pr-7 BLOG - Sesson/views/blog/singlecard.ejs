@@ -1,0 +1,102 @@
+<%- include('../header') %>
+
+    <style>
+        body {
+            background-color: #8894ad;
+        }
+
+        .single-blog {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #21158b;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 👇 Image thodi nani */
+        .single-blog img {
+            width: 70%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 12px;
+            background: #21355f;
+        }
+x
+        .single-blog h2 {
+            font-weight: 800;
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: #072057;
+        }
+
+        /* 👇 Meta line-by-line */
+        .meta {
+            font-size: 14px;
+            color: #edeff1;
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+
+        .meta div {
+            margin-bottom: 4px;
+        }
+
+        /* 👇 Content readable & line-by-line */
+        .content {
+            font-size: 16px;
+            line-height: 2;
+            /* more spacing */
+            color: #f0f2f5;
+            white-space: pre-line;
+            /* line by line show */
+            margin-bottom: 25px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 9px 20px;
+            background: #2563eb;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #1e40af;
+        }
+    </style>
+
+    <div class="single-blog">
+
+        <img src="<%= blogs.image %>" alt="Blog Image">
+
+        <h2>
+            <%= blogs.title %>
+        </h2>
+
+        <div class="meta">
+            <div>✍ <strong>Author:</strong>
+                <%= blogs.author %>
+            </div>
+            <div>📂 <strong>Category:</strong>
+                <%= blogs.category %>
+            </div>
+            <div>📅 <strong>Date:</strong>
+                <%= blogs.publishDate %>
+            </div>
+        </div>
+
+        <div class="content">
+            <%= blogs.description %>
+        </div>
+
+        <a href="/blog/view-blogs" class="back-btn">← Back to Blogs</a>
+
+    </div>
+
+    <%- include('../footer') %>

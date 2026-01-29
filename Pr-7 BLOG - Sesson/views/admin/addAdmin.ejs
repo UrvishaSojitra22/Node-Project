@@ -1,0 +1,116 @@
+<%- include('../header')%>
+
+    <!-- ============================================================== -->
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <h4 class="page-title">Blog Details</h4>
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" method="post" action="/admin/add-admin"
+                            enctype="multipart/form-data">
+
+                            <div class="card-body">
+                                <h4 class="card-title">Add Admin</h4>
+
+                                <!-- Admin Name -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Admin Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="name"
+                                            placeholder="Enter admin name" required>
+                                    </div>
+                                </div>
+
+                                <!-- Admin Email -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" name="email" placeholder="Enter email"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <!-- Admin Password -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="Enter password" required>
+                                    </div>
+                                </div>
+
+                                <!-- Mobile -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Mobile</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="mobile"
+                                            placeholder="Enter mobile number">
+                                    </div>
+                                </div>
+
+                              
+                               
+
+                              
+                                <!-- Address -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Address</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" name="address" rows="3"
+                                            placeholder="Enter address"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Admin Image -->
+                                <div class="form-group row">
+                                    <label class="col-sm-3 text-right col-form-label">Admin Image</label>
+                                    <div class="col-sm-9">
+                                        <input type="file" class="form-control" name="adminImage">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-top">
+                                <div class="card-body text-right">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+
+
+
+
+
+                    <%- include('../footer')%>

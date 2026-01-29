@@ -1,0 +1,164 @@
+<%- include('../header') %>
+
+<style>
+    body {
+        background-color: #f4f6f9;
+    }
+
+    #adminSearch {
+        border-radius: 30px;
+        padding: 10px 18px;
+        font-size: 14px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        border: none;
+        text-align: center;
+    }
+
+    .admin-card {
+        background: linear-gradient(160deg, #1f2933, #111827);
+        color: #e5e7eb;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+        transition: 0.3s;
+        height: 100%;
+        max-width: 320px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .admin-img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+    }
+
+    .admin-content {
+        padding: 18px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-title {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #fff;
+    }
+
+    .admin-meta {
+        font-size: 13px;
+        color: #9ca3af;
+        margin-bottom: 4px;
+    }
+
+    .admin-desc {
+        font-size: 13px;
+        margin: 10px 0;
+        color: #d1d5db;
+        flex-grow: 1;
+    }
+
+    .admin-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .admin-actions a {
+        padding: 6px 14px;
+        font-size: 12px;
+        border-radius: 20px;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(90deg, #3b82f6, #2563eb);
+    }
+
+    .admin-actions a.delete {
+        background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
+</style>
+
+<div class="page-wrapper">
+
+    <div class="page-breadcrumb text-center">
+        <h4 class="page-title">View Admins</h4>
+
+        <div class="row justify-content-center mt-3 mb-4">
+            <div class="col-lg-4 col-md-6 col-sm-8">
+                <input type="text" id="adminSearch" class="form-control"
+                    placeholder="🔍 Search by name, email, role or status">
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <% admins.forEach((admin)=> { %>
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 admin-item"
+                    data-name="<%= admin.name %>"
+                    data-email="<%= admin.email %>"
+                    data-role="<%= admin.role %>"
+                    data-status="<%= admin.status %>">
+
+                    <div class="admin-card">
+
+                        <% if(admin.adminImage){ %>
+                            <img src="<%= admin.adminImage %>" class="admin-img">
+                        <% } %>
+
+                        <div class="admin-content">
+                            <div class="admin-title"><%= admin.name %></div>
+
+                            <div class="admin-meta">Email: <%= admin.email %></div>
+                            <div class="admin-meta">Role: <%= admin.role %></div>
+                            <div class="admin-meta">Status: <%= admin.status %></div>
+
+                            <div class="admin-desc">
+                                <%= admin.address || 'No address added' %>
+                            </div>
+
+                            <div class="admin-actions">
+                                <a href="/admin/single-view/<%= admin._id %>">View</a>
+                                <a href="/admin/edit-admin/<%= admin._id %>">Edit</a>
+                                <a href="/admin/delete-admin/<%= admin._id %>" class="delete">Delete</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            <% }) %>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const search = document.getElementById('adminSearch');
+    const admins = document.querySelectorAll('.admin-item');
+
+    search.addEventListener('keyup', () => {
+        const value = search.value.toLowerCase();
+
+        admins.forEach(item => {
+            const text =
+                item.dataset.name +
+                item.dataset.email +
+                item.dataset.role +
+                item.dataset.status;
+
+            item.style.display = text.toLowerCase().includes(value)
+                ? 'block'
+                : 'none';
+        });
+    });
+</script>
+
+<%- include('../footer') %>
