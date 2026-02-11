@@ -1,0 +1,235 @@
+<%- include('../header')%>
+
+
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <!-- <h4 class="page-title">Form Basic</h4> -->
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" action="/product/update-product/<%= product.id %>" method="post"
+                            enctype="multipart/form-data">
+                            <div class="card-body">
+                                <h4 class="card-title">Sub Category Info</h4>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Category Name</label>
+                                    <div class="col-sm-9">
+                                        <select name="categoryId" class="form-control" id="categoryId">
+                                            <option value="">select category</option>
+                                            <% category.forEach((category)=>{ %>
+                                                <option value="<%= category.id %>"
+                                                    <%=product.categoryId.toString()===category._id.toString()
+                                                    ? 'selected' : '' %>>
+                                                    <%= category.categoryName %>
+                                                </option>
+
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Sub Category Name</label>
+                                    <div class="col-sm-9">
+                                        <select name="subcategoryId" class="form-control" id="subcategoryId">
+                                            <option value="">select sub category</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Extra Sub Category Name</label>
+                                    <div class="col-sm-9">
+                                        <select name="extrasubcategoryId" class="form-control" id="extrasubcategoryId">
+                                            <option value="">select extra sub category</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Product Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="productName"
+                                            placeholder="Product Name Here" name="productName"
+                                            value="<%= product.productName %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Product Description</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="productDes"
+                                            placeholder="Product Description Here" value="<%= product.productDes %>"
+                                            name="productDes">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Product Brand</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="ProductBrand"
+                                            placeholder="Product Brand Here" name="ProductBrand"
+                                            value="<%= product.ProductBrand %>">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Product Price</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" id="productPrice"
+                                            placeholder="Product Price Here" name="productPrice"
+                                            value="<%= product.productPrice %>">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 text-right control-label col-form-label">Product
+                                        Image</label>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="validatedCustomFile"
+                                                name="productImage" value="productImage">
+                                            <img src="<%= product.productImage %>" width="100" alt="">
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose
+                                                file...</label>
+                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <!-- editor -->
+
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <script>
+            let categoryId = document.getElementById('categoryId');
+            let subcategoryId = document.getElementById('subcategoryId');
+            let extrasubcategoryId = document.getElementById('extrasubcategoryId');
+
+            // EDIT page ke saved IDs
+            let selectedSubCategory = "<%= product.subcategoryId %>";
+            let selectedExtraSubCategory = "<%= product.extrasubcategoryId %>";
+
+            // 🔹 Load Sub Categories
+            function loadSubCategories(catId, selectedId = null) {
+                subcategoryId.innerHTML = `<option value="">select sub category</option>`;
+                extrasubcategoryId.innerHTML = `<option value="">select extra sub category</option>`;
+
+                fetch(`/extrasubcategory/subcategory/${catId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        data.data.forEach(subcat => {
+                            let option = document.createElement('option');
+                            option.value = subcat._id;
+                            option.textContent = subcat.subCategoryName;
+
+                            if (subcat._id == selectedId) {
+                                option.selected = true;
+                            }
+
+                            subcategoryId.appendChild(option);
+                        });
+                    });
+            }
+
+            // 🔹 Load Extra Sub Categories
+            function loadExtraSubCategories(subCatId, selectedId = null) {
+                extrasubcategoryId.innerHTML = `<option value="">select extra sub category</option>`;
+
+                fetch(`/product/extrasubcategory/${subCatId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        data.data.forEach(extra => {
+                            let option = document.createElement('option');
+                            option.value = extra._id;
+                            option.textContent = extra.extrasubCategoryName;
+
+                            if (extra._id == selectedId) {
+                                option.selected = true;
+                            }
+
+                            extrasubcategoryId.appendChild(option);
+                        });
+                    });
+            }
+
+            // ✅ PAGE LOAD (EDIT MODE)
+            if (categoryId.value) {
+                loadSubCategories(categoryId.value, selectedSubCategory);
+                loadExtraSubCategories(selectedSubCategory, selectedExtraSubCategory);
+            }
+
+            // ✅ CATEGORY CHANGE
+            categoryId.addEventListener('change', () => {
+                loadSubCategories(categoryId.value);
+            });
+
+            // ✅ SUBCATEGORY CHANGE
+            subcategoryId.addEventListener('change', () => {
+                loadExtraSubCategories(subcategoryId.value);
+            });
+        </script>
+
+
+        <%- include('../footer')%>

@@ -1,0 +1,204 @@
+<%- include('../header')%>
+
+
+    <!-- Page wrapper  -->
+    <!-- ============================================================== -->
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="page-breadcrumb">
+            <div class="row">
+                <div class="col-12 d-flex no-block align-items-center">
+                    <!-- <h4 class="page-title">Form Basic</h4> -->
+                    <div class="ml-auto text-right">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- ============================================================== -->
+            <!-- Start Page Content -->
+            <!-- ============================================================== -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form class="form-horizontal" action="/product/add-product" method="post"
+                            enctype="multipart/form-data">
+                            <div class="card-body">
+                                <h4 class="card-title">Sub Category Info</h4>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Category Name</label>
+                                    <div class="col-sm-9">
+                                        <select name="categoryId" id="categoryId" class="form-control">
+                                            <option value="">select category</option>
+                                            <% category.forEach((category)=>{ %>
+                                                <option value="<%= category.id %>">
+                                                    <%= category.categoryName %>
+                                                </option>
+
+                                                <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Sub Category Name</label>
+                                    <div class="col-sm-9">
+                                        <select name="subcategoryId" id="subcategoryId" class="form-control">
+                                            <option>select sub category </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Extra Sub Category Name</label>
+                                    <div class="col-sm-9">
+                                        <select name="extrasubcategoryId" id="extrasubcategoryId" class="form-control">
+                                            <option>select Extra sub category </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Product Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="productName"
+                                            placeholder="Product Name Here" name="productName">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Product Description</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="productDes"
+                                            placeholder="Product Description Here" name="productDes">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Product Brand</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="ProductBrand"
+                                            placeholder="Product Brand Here" name="ProductBrand">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">
+                                        Product Price</label>
+                                    <div class="col-sm-9">
+                                        <input type="number" class="form-control" id="productPrice"
+                                            placeholder="Product Price Here" name="productPrice">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-md-3 text-right control-label col-form-label">Product
+                                        Image</label>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="validatedCustomFile"
+                                                name="productImage" value="productImage" required>
+                                            <label class="custom-file-label" for="validatedCustomFile">Choose
+                                                file...</label>
+                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body d-flex justify-content-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <!-- editor -->
+
+            <!-- ============================================================== -->
+            <!-- End PAge Content -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Right sidebar -->
+            <!-- ============================================================== -->
+            <!-- .right-sidebar -->
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+
+
+        <%- include('../footer')%>
+
+
+            <script>
+                let categoryId = document.getElementById('categoryId')
+                let subcategoryId = document.getElementById('subcategoryId');
+                let extrasubcategoryId = document.getElementById('extrasubcategoryId');
+                categoryId.addEventListener('change', () => {
+                    let id = categoryId.value;
+
+                    fetch(`/extrasubcategory/subcategory/${id}`)
+                        .then(res => res.json())
+
+                        .then(data => {
+                            let result = data.data;
+                            result.forEach(res => {
+
+                                subcategoryId.innerHTML = `<option value="">select category</option>`
+                                let option = document.createElement('option')
+                                option.innerHTML = res.subCategoryName;
+                                option.setAttribute('value', res._id)
+                                subcategoryId.append(option)
+                            })
+                        })
+
+                })
+
+                subcategoryId.addEventListener('change', () => {
+                    let id = subcategoryId.value;
+
+                    fetch(`/product/extrasubcategory/${id}`)
+
+                        .then(res => res.json())
+
+                        .then(data => {
+                            let result = data.data;
+                            result.forEach(res => {
+                                console.log(data);
+                                extrasubcategoryId.innerHTML = `<option value="">select category</option>`
+                                let option = document.createElement('option')
+                                option.innerHTML = res.extrasubCategoryName;
+                                option.setAttribute('value', res._id)
+                                extrasubcategoryId.append(option)
+                            })
+                        })
+                })
+            </script>
