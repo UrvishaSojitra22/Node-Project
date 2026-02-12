@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>All Products - Ayushi Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f3f6;
+        }
+
+        /* ===== HEADER UPDATED UI ===== */
+        /* ===== FINAL HEADER CSS ===== */
+        header {
+            background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+            padding: 14px 50px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* LOGO */
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ffce00;
+            white-space: nowrap;
+        }
+
+        /* SEARCH BOX */
+        .search-box {
+            width: 350px;
+            display: flex;
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-left: auto;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 10px 14px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: #ff9f00;
+            border: none;
+            padding: 0 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* RIGHT SIDE ACTIONS */
+        .header-actions {
+            margin-left: auto;
+            /* pushes cart to right end */
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* CART BUTTON */
+        .cart-open-btn {
+            background: #ff9f00;
+            border: none;
+            padding: 8px 18px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .cart-open-btn .badge {
+            margin-left: 6px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .search-box {
+                width: 100%;
+                order: 3;
+            }
+
+            .header-actions {
+                order: 2;
+            }
+        }
+
+        /* CATEGORY BAR */
+        .category-bar {
+            background: #fff;
+            padding: 12px 30px;
+            display: flex;
+            gap: 25px;
+        }
+
+        .dropdown {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #fff;
+            min-width: 220px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            top: 30px;
+            z-index: 999;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+
+        /* product-card */
+        .product-section {
+            background: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            /* Desktop */
+            gap: 22px;
+        }
+
+        /* Tablet */
+        @media (max-width: 992px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        /* ================================
+   PRODUCT CARD UI
+================================ */
+        .product-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 15px;
+            border: 1px solid #e6e6e6;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image */
+        .product-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: contain;
+            margin-bottom: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Product Name */
+        .p-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #212121;
+            margin-bottom: 6px;
+            overflow: hidden;
+        }
+
+        /* Price */
+        .p-price {
+            font-size: 17px;
+            font-weight: 700;
+            color: #388e3c;
+            margin-bottom: 12px;
+        }
+
+        /* ================================
+   BUTTONS SECTION
+================================ */
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            /* buttons bottom me rahe */
+        }
+
+        .view-btn {
+            flex: 1;
+            padding: 9px 0;
+            background: #2874f0;
+            color: #ffffff;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background: #0b5ed7;
+        }
+
+        .cart-btn {
+            flex: 1;
+            padding: 9px 0;
+            background: linear-gradient(135deg, #ff9f00, #fb641b);
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* FOOTER */
+        /* =========================
+   FOOTER UI
+========================= */
+        .site-footer {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #ddd;
+            margin-top: 50px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 40px 60px;
+        }
+
+        /* Footer Box */
+        .footer-box h4 {
+            color: #ffce00;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .footer-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        /* Links */
+        .footer-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-box ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-box ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .footer-box ul li a:hover {
+            color: #ffce00;
+            padding-left: 5px;
+        }
+
+        /* Bottom */
+        .footer-bottom {
+            text-align: center;
+            font-size: 13px;
+            color: #aaa;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* =========================
+   FOOTER RESPONSIVE
+========================= */
+        @media (max-width: 992px) {
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                padding: 30px;
+                text-align: center;
+            }
+
+            .footer-box ul li a:hover {
+                padding-left: 0;
+            }
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* =========================
+   UPDATED BUTTON COLORS
+========================= */
+
+        /* VIEW BUTTON */
+        .view-btn {
+            flex: 1;
+            padding: 10px 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background: linear-gradient(135deg, #16222a, #3a6073);
+            transform: translateY(-2px);
+        }
+
+        /* ADD TO CART BUTTON */
+        .cart-btn {
+            flex: 1;
+            padding: 10px 0;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .cart-btn:hover {
+            background: linear-gradient(135deg, #0f766e, #22c55e);
+            transform: translateY(-2px);
+        }
+
+        /* FORM ko bhi equal width dene ke liye */
+        .product-actions form {
+            flex: 1;
+            display: flex;
+        }
+
+        /* Button full width le */
+        .product-actions form .cart-btn {
+            width: 100%;
+        }
+
+
+
+
+
+        /* offcanvas */
+
+        .cart-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .cart-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+        }
+
+        .cart-info {
+            flex: 1;
+        }
+
+        .qty-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-box a {
+            padding: 4px 10px;
+            background: #ddd;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .total {
+            font-weight: bold;
+            color: #388e3c;
+        }
+
+        .delete {
+            color: red;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+
+        .cart-open-btn {
+            background: linear-gradient(135deg, #b89406, #ff9f00);
+            color: #1b1b1b;
+            border: none;
+            padding: 8px 18px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+        }
+
+        /* Badge spacing */
+        .cart-open-btn .badge {
+            margin-left: 4px;
+        }
+
+        /* Hover effect */
+        .cart-open-btn:hover {
+            background: linear-gradient(135deg, #ffd54f, #ffb300);
+            transform: translateY(-1px);
+        }
+
+        /* Active / focus fix */
+        .cart-open-btn:focus,
+        .cart-open-btn:active {
+            outline: none;
+            box-shadow: none;
+        }
+
+        /* offcanvas  */
+        /* ============================
+   CART OFFCANVAS – UNIQUE UI
+============================ */
+        .cart-canvas {
+            background: #f8f9fa;
+            width: 420px;
+        }
+
+        /* Header */
+        .cart-canvas .offcanvas-header {
+            background: linear-gradient(135deg, #2874f0, #0b5ed7);
+            color: #fff;
+            padding: 16px 20px;
+        }
+
+        .cart-canvas .btn-close {
+            filter: invert(1);
+        }
+
+        /* Body */
+        .cart-canvas .offcanvas-body {
+            padding: 18px;
+        }
+
+        /* Empty Cart */
+        .cart-canvas p {
+            font-size: 15px;
+            color: #666;
+        }
+
+        /* ============================
+   CART ITEM CARD
+============================ */
+        .cart-item {
+            background: #fff;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+            margin-bottom: 18px;
+            transition: 0.3s;
+        }
+
+        .cart-item:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Image */
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #f1f3f6;
+            padding: 6px;
+        }
+
+        /* Info */
+        .cart-info p {
+            margin: 4px 0;
+            font-size: 14px;
+        }
+
+        /* Quantity Box */
+        .qty-box {
+            margin-top: 8px;
+        }
+
+        .qty-box input {
+            text-align: center;
+            font-weight: 600;
+            border-radius: 6px;
+        }
+
+        /* Total Price */
+        .cart-info .total {
+            font-size: 15px;
+            color: #388e3c;
+            margin-top: 6px;
+        }
+
+        /* Remove Button */
+        .cart-info .delete {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 13px;
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+        .cart-info .delete:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================
+   GRAND TOTAL
+============================ */
+        .cart-canvas h5.text-end {
+            background: #fff;
+            padding: 14px;
+            border-radius: 10px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+        }
+
+        /* =========================
+   REMOVE BUTTON – MODERN UI
+========================= */
+        .delete {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: #ffe5e5;
+            color: #dc3545;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s ease;
+            text-decoration: none !important;
+        }
+
+        .delete::before {
+            content: "🗑️";
+            font-size: 14px;
+        }
+
+        .delete:hover {
+            background: #dc3545;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .delete:focus,
+        .delete:active {
+            text-decoration: none;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 576px) {
+            .cart-canvas {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo"> Products</div>
+        <div class="header-actions">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search for products..." />
+            </div>
+            
+            <button class="cart-open-btn" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas">
+                🛒 Cart
+                <span class="badge bg-danger">
+                    <%= cartCount %>
+                </span>
+            </button>
+        </div>
+    </header>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartCanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title fw-bold">🛒 My Cart</h5>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <% if(cartItems.length===0){ %>
+                <p>Your cart is empty</p>
+                <% } %>
+
+                    <% cartItems.forEach(item=> { %>
+                        <div class="cart-item">
+
+                            <img src="<%= item.productId.productImage %>">
+
+                            <div class="cart-info">
+                                <p><strong>
+                                        <%= item.productId.productName %>
+                                    </strong></p>
+                                <p>Price: ₹<%= item.productId.productPrice %>
+                                </p>
+
+                                <div class="qty-box">
+                                    Qty:
+                                    <input type="number" min="1" value="<%= item.quantity %>"
+                                        class="form-control qty-input" style="width:70px"
+                                        data-price="<%= item.productId.productPrice %>">
+                                </div>
+
+
+                                <p class="total">
+                                    Total: ₹<span class="item-total">
+                                        <%= item.productId.productPrice * item.quantity %>
+                                    </span>
+                                </p>
+                                <a href="/web/deletecart/<%= item._id %>" class="delete">
+                                    Remove
+                                </a>
+
+                                <hr>
+
+                            </div>
+
+                        </div>
+
+                        <% }) %>
+
+                            <h5 class="text-end">
+                                <b> Grand Total: ₹</b>
+                                <b> <span id="grandTotal">0</span></b>
+                            </h5>
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <!-- CATEGORY BAR -->
+    <div class="category-bar">
+        <% category.forEach(cat=> { %>
+            <div class="dropdown">
+                <strong>
+                    <%= cat.categoryName %>
+                </strong>
+
+                <div class="dropdown-content">
+                    <% subcategory .filter(sub=> sub.categoryId._id.toString() === cat._id.toString())
+                        .forEach(sub => { %>
+
+                        <p>
+                            <%= sub.subCategoryName %>
+                        </p>
+
+                        <% }) %>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+    
+
+    <!-- PRODUCTS -->
+    <div class="product-section">
+        <h2>All Products</h2>
+
+        <div class="products-grid">
+            <% product.forEach(p=> { %>
+                <div class="product-card">
+                    <img src="<%= p.productImage %>">
+                    <div class="p-name product-name">
+                        <%= p.productName %>
+                    </div>
+                    <div class="p-price">₹<%= p.productPrice %>
+                    </div>
+
+                    <div class="product-actions">
+                        <!-- Single Product View -->
+                        <a href="/web/singleview/<%= p.id %>" class="view-btn">View</a>
+
+                        <!-- Add to Cart -->
+                        <form action="/web/addtocart/<%= p._id %>" method="post">
+                            <button type="submit" class="cart-btn">
+                                Add to Cart
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <div class="footer-box">
+                <h4>Ayushi Store</h4>
+                <p>
+                    Your trusted online store for quality products at the best prices.
+                    Shop smart, shop fast.
+                </p>
+            </div>
+
+            <div class="footer-box">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">All Products</a></li>
+                    <li><a href="#">My Cart</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-box">
+                <h4>Customer Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-box">
+                <h4>Contact</h4>
+                <p>Email: support@ayushistore.com</p>
+                <p>Phone: +91 98765 43210</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Ayushi Store — All Rights Reserved
+        </div>
+    </footer>
+
+
+    <!-- <script>
+        document.querySelectorAll('.qty-input').forEach(input => {
+            input.addEventListener('input', function () {
+                let qty = parseInt(this.value);
+                let price = parseInt(this.dataset.price);
+
+                if (qty < 1 || isNaN(qty)) {
+                    qty = 1;
+                    this.value = 1;
+                }
+
+                let total = qty * price;
+
+                this.closest('.cart-info')
+                    .querySelector('.item-total')
+                    .innerText = total;
+            });
+        });
+    </script> -->
+
+
+    <script>
+        function updateTotals() {
+            let grandTotal = 0;
+
+            document.querySelectorAll('.cart-item').forEach(item => {
+                let qtyInput = item.querySelector('.qty-input');
+                let price = parseInt(qtyInput.dataset.price);
+                let qty = parseInt(qtyInput.value);
+
+                if (qty < 1 || isNaN(qty)) {
+                    qty = 1;
+                    qtyInput.value = 1;
+                }
+
+                let itemTotal = qty * price;
+                item.querySelector('.item-total').innerText = itemTotal;
+
+                grandTotal += itemTotal;
+            });
+
+            document.getElementById('grandTotal').innerText = grandTotal;
+        }
+
+        // quantity change
+        document.querySelectorAll('.qty-input').forEach(input => {
+            input.addEventListener('input', updateTotals);
+        });
+
+        // page load par bhi calculate ho
+        updateTotals();
+    </script>
+
+    <script>
+        const searchInput = document.getElementById("searchInput");
+        const productCards = document.querySelectorAll(".product-card");
+
+        searchInput.addEventListener("keyup", function () {
+            let searchValue = this.value.toLowerCase().trim();
+
+            productCards.forEach(card => {
+                let productName = card
+                    .querySelector(".product-name")
+                    .innerText
+                    .toLowerCase();
+
+                if (productName.includes(searchValue)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
