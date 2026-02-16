@@ -9,7 +9,11 @@ const flash = require('connect-flash');
 
 
 //database connection
+<<<<<<< HEAD
 const dbconnect = require('./config/db.connection.js');
+=======
+const dbconnect = require('./config/db.connection');
+>>>>>>> c491e308721735c15350e37ac4971dd76c06cc61
 const flashmessage = require('./middleware/flashmessage');
 dbconnect();
 

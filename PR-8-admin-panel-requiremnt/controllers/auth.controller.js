@@ -14,6 +14,10 @@ exports.loginpage = async (req, res) => {
         } else {
             return res.render('login')
         }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> c491e308721735c15350e37ac4971dd76c06cc61
 
     } catch (error) {
         console.log(error);
@@ -34,6 +38,10 @@ exports.dashboardpage = async (req, res) => {
         } else {
             return res.redirect('/')
         }
+<<<<<<< HEAD
+=======
+      
+>>>>>>> c491e308721735c15350e37ac4971dd76c06cc61
 
         // return res.render('dashboard');
     } catch (error) {
